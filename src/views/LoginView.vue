@@ -3,7 +3,7 @@
   <n-message-provider>
   <div class="background"></div>
   <n-card class="box">
-    <h1 style="text-align: center" >调查问卷</h1>
+    <h1 style="text-align: center; margin-top: 2px">调查问卷</h1>
     <n-form :model="userValue" :rules="rules" ref="formRef">
       <n-form-item-row label="用户名" path="username">
         <n-input placeholder="请输入用户名" v-model:value="userValue.username"/>
@@ -20,34 +20,25 @@
 </template>
 
 <script lang="ts">
+import sha1 from 'sha1'
 import { defineComponent, ref } from 'vue'
 import { FormInst } from 'naive-ui'
-import {
-  NTabs,
-  NCard,
-  NButton,
-  NInput,
-  NTabPane,
-  NForm,
-  NFormItemRow,
-} from "naive-ui";
+import { NCard, NButton, NInput, NForm, NFormItemRow } from "naive-ui";
+import useCurrentInstance from "@/utils/useCurrentInstance";
 export default defineComponent({
   name: "LoginView",
   components: {
-    NTabs,
     NCard,
     NButton,
     NInput,
-    NTabPane,
     NForm,
     NFormItemRow,
   },
   methods: {
-    handleLogin() {
-      window.$message.success('登录成功');
-    },
+
   },
   setup() {
+    const { proxy } = useCurrentInstance();
     const formRef = ref<FormInst | null>(null)
     return {
       formRef,
@@ -70,6 +61,28 @@ export default defineComponent({
         formRef.value?.validate((errors) => {
           if (!errors) {
             window.$message.success('Valid')
+            const { username, password } = userValue.value
+            console.log('ddi', formRef)
+            // let dts = {
+            //   username: username,
+            //   password: sha1(password + 'kenko')
+            // }
+            // console.log(dts)
+            // // console.log(this.user.password.split('').reverse().join(''))
+            // proxy.request.post('/user/login', dts).then(res => {
+            //   if (res.code !== '200') {
+            //     window.$message.error(res.msg);
+            //   } else {
+            //     window.$message.success('登录成功');
+            //     localStorage.setItem('token', res.data);
+            //     // proxy.request.get('/user/info').then(res => {
+            //     //   localStorage.setItem('name', res.data.name)
+            //     //   localStorage.setItem('id', res.data.id)
+            //     //   localStorage.setItem('username', res.data.username)
+            //     //   proxy.$router.push("/");
+            //     // })
+            //   }
+            // })
           } else {
             console.log(errors)
             window.$message.error('Invalid')

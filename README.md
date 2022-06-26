@@ -1,24 +1,11 @@
-# survey-front-end-naiveui
+# 调查问卷前端
 
-## Project setup
-```
-npm install
-```
+demo: https://survey.akagiyui.com
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+使用[`Vue 3`](https://v3.cn.vuejs.org/)+[`Naïve UI`](https://www.naiveui.com/)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Change Log
 
-### Lints and fixes files
-```
-npm run lint
-```
+### 2022-06-25
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- 增加登录页

@@ -1,6 +1,8 @@
 <template>
   <n-message-provider>
-    <MessageApi/>
+    <n-dialog-provider>
+      <MessageApi/>
+    </n-dialog-provider>
   </n-message-provider>
     <div id="app">
       <router-view />
@@ -13,10 +15,10 @@
 
 <script lang="ts">
 import MessageApi from "@/components/MessageApi.vue";
-import { NMessageProvider } from "naive-ui";
+import { NMessageProvider, NDialogProvider } from "naive-ui";
 
 export default {
-  components: { MessageApi, NMessageProvider },
+  components: { MessageApi, NMessageProvider, NDialogProvider },
   name: "App",
   setup() {},
 };
